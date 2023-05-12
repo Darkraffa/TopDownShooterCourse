@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3whqgf6nfohs"]
+
+[ext_resource type="Script" path="res://actors/Actor.gd" id="1_kog1o"]
+[ext_resource type="Texture2D" uid="uid://dgneiir4akwfj" path="res://assets/shooter/Spritesheet/spritesheet_characters.png" id="2_yue8b"]
+[ext_resource type="PackedScene" uid="uid://bhqoe2xlwrfr6" path="res://actors/health.tscn" id="3_0n4xh"]
+[ext_resource type="PackedScene" uid="uid://c03anfw7p0plk" path="res://weapons/weapon.tscn" id="4_4ff2d"]
+[ext_resource type="PackedScene" uid="uid://xxrtoeu2xsyu" path="res://actors/ai.tscn" id="5_lx8e1"]
+[ext_resource type="PackedScene" uid="uid://dmp5h50w2pbng" path="res://team.tscn" id="6_pjrta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utrvg"]
+size = Vector2(40, 43)
+
+[node name="Ally" type="CharacterBody2D" groups=["enemy", "obstacles"]]
+script = ExtResource("1_kog1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yue8b")
+region_enabled = true
+region_rect = Rect2(349, -0.0413382, 38, 43.0413)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_utrvg")
+
+[node name="Health" parent="." instance=ExtResource("3_0n4xh")]
+
+[node name="Weapon" parent="." instance=ExtResource("4_4ff2d")]
+position = Vector2(25, 11)
+
+[node name="AI" parent="." instance=ExtResource("5_lx8e1")]
+
+[node name="Team" parent="." instance=ExtResource("6_pjrta")]
+team = 1

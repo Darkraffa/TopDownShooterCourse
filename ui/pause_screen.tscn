@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://cidaiox18be5a"]
+
+[ext_resource type="Script" path="res://ui/pause_screen.gd" id="1_iluyb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yibkl"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1ltw"]
+bg_color = Color(0.235294, 0.235294, 0.235294, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[node name="PauseScreen" type="CanvasLayer"]
+process_mode = 2
+layer = 10
+script = ExtResource("1_iluyb")
+
+[node name="Overlay" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yibkl")
+
+[node name="PauseMenuContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenuContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1ltw")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenuContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="PauseMenuContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PauseTitle" type="Label" parent="PauseMenuContainer/PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " PAUSE "
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseMenuContainer/PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenuContainer/PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " RESUME "
+
+[node name="QuitButton" type="Button" parent="PauseMenuContainer/PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "QUIT"
+
+[connection signal="pressed" from="PauseMenuContainer/PanelContainer/MarginContainer/Rows/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenuContainer/PanelContainer/MarginContainer/Rows/QuitButton" to="." method="_on_quit_button_pressed"]

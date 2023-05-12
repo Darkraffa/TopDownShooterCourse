@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqjevjfe281cg"]
+
+[ext_resource type="Script" path="res://CapturableBase.gd" id="1_ciqgh"]
+[ext_resource type="Texture2D" uid="uid://bvdoyh43r4gu7" path="res://assets/shooter/Tilesheet/tilesheet_complete.png" id="2_phqon"]
+[ext_resource type="PackedScene" uid="uid://dmp5h50w2pbng" path="res://team.tscn" id="3_pcr43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxy3v"]
+size = Vector2(200, 200)
+
+[node name="CapturableBase" type="Area2D"]
+script = ExtResource("1_ciqgh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gxy3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_phqon")
+region_enabled = true
+region_rect = Rect2(1484, 268, 40, 40)
+
+[node name="Team" parent="." instance=ExtResource("3_pcr43")]
+
+[node name="CaptureTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlayerLabel" type="Label" parent="."]
+offset_left = -60.0
+offset_top = 15.0
+offset_right = -18.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0, 0.392157, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+
+[node name="EnemyLabel" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 62.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0, 0, 0.545098, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="CaptureTimer" to="." method="_on_capture_timer_timeout"]

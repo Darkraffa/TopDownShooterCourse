@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck0a7gq3ks8gq"]
+
+[ext_resource type="Script" path="res://actors/Player.gd" id="1_hl0te"]
+[ext_resource type="Texture2D" uid="uid://dgneiir4akwfj" path="res://assets/shooter/Spritesheet/spritesheet_characters.png" id="2_hsnrb"]
+[ext_resource type="Script" path="res://actors/WeaponManager.gd" id="5_6uolt"]
+[ext_resource type="PackedScene" uid="uid://dmp5h50w2pbng" path="res://team.tscn" id="5_jum2a"]
+[ext_resource type="PackedScene" uid="uid://bhqoe2xlwrfr6" path="res://actors/health.tscn" id="5_tnlxs"]
+[ext_resource type="PackedScene" uid="uid://yucfyg7erla1" path="res://weapons/pistol.tscn" id="6_wke1c"]
+[ext_resource type="PackedScene" uid="uid://crmu46vegunw3" path="res://weapons/smg.tscn" id="7_nkhl3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utrvg"]
+size = Vector2(40, 43)
+
+[node name="Player" type="CharacterBody2D" groups=["obstacles", "player"]]
+script = ExtResource("1_hl0te")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hsnrb")
+region_enabled = true
+region_rect = Rect2(349, 0, 39, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_utrvg")
+
+[node name="Health" parent="." instance=ExtResource("5_tnlxs")]
+
+[node name="Team" parent="." instance=ExtResource("5_jum2a")]
+team = 1
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="."]
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(27, 10)
+script = ExtResource("5_6uolt")
+
+[node name="Pistol" parent="WeaponManager" instance=ExtResource("6_wke1c")]
+
+[node name="SMG" parent="WeaponManager" instance=ExtResource("7_nkhl3")]
+visible = false

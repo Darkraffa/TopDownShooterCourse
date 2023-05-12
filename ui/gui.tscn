@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://kpkxhacyl3dc"]
+
+[ext_resource type="Script" path="res://ui/GUI.gd" id="1_qt7jh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgkyj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xj3i3"]
+bg_color = Color(0.431373, 0, 0, 1)
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_qt7jh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1024, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MiddleRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="BottomRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HealthSection" type="CenterContainer" parent="MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow/HealthSection"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rgkyj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xj3i3")
+value = 100.0
+
+[node name="AmmoSection" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "30"
+
+[node name="AmmoSeparator" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " / "
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "30"

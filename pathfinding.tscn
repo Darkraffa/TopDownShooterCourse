@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhc53fqysv1ba"]
+
+[ext_resource type="Script" path="res://Pathfinding.gd" id="1_alsuo"]
+
+[node name="Pathfinding" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_alsuo")
+
+[node name="Grid" type="Node2D" parent="."]
